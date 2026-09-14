@@ -4,8 +4,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  run-bot:
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        run: echo "ClipBot funktioniert!"
+      - name: Dateien laden
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Discord installieren
+        run: pip install discord.py
+
+      - name: Bot starten
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        run: python bot.py
