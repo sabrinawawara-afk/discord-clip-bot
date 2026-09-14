@@ -7,16 +7,13 @@ jobs:
   run-bot:
     runs-on: ubuntu-latest
     steps:
-      - name: Dateien laden
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Python einrichten
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Discord installieren
-        run: pip install discord.py
+      - run: pip install discord.py
 
       - name: Bot starten
         env:
